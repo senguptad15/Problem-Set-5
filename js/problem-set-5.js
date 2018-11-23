@@ -26,7 +26,44 @@ function mario() {
   let height; // DO NOT MODIFY
   ////////////// DO NOT MODIFY
 
-  // WRITE YOUR EXERCISE 1 CODE HERE
+  do {
+    height = prompt("Please enter an integer from 1 to 23:");
+  } while ((Number.isInteger(height)) || (1 <= height && height <= 23) == false);
+
+  let marioResult = document.getElementById('mario-easy-output');
+  let x = 1;
+  let space1 = "&nbsp&nbsp";
+
+  while (x < (height - 1)) {
+    space1 = space1 + "&nbsp&nbsp";
+    x = x + 1;
+  }
+
+  let hashtag = "##";
+  marioResult.innerHTML = space1 + hashtag + "<br/>";
+
+  let y = 1;
+  let z = 1;
+  let zSub = 1;
+  let space = "&nbsp&nbsp";
+
+  while (y < (height - 1)) {
+    hashtag = hashtag + "#";
+    while (z < (height - 2)) {
+      space = space + "&nbsp&nbsp";
+      z = z + 1;
+    }
+    marioResult.innerHTML += space + hashtag + "<br/>";
+    space = "&nbsp&nbsp";
+    z = zSub + 1;
+    zSub = zSub + 1;
+    y = y + 1;
+  }
+  while (y < height) {
+    hashtag = hashtag + "#";
+    marioResult.innerHTML += hashtag;
+    y = y + 1;
+  }
 
   ////////////////////////// DO NOT MODIFY
   check('mario', height); // DO NOT MODIFY
@@ -61,7 +98,39 @@ function marioAgain() {
   let height; // DO NOT MODIFY
   ////////////// DO NOT MODIFY
 
-  // WRITE YOUR EXERCISE 2 CODE HERE
+  do {
+    height = prompt("Please enter an integer from 1 to 23:");
+  } while ((Number.isInteger(height)) || (1 <= height && height <= 23) == false);
+
+  let marioHardResult = document.getElementById('mario-hard-output');
+  let x = 1;
+  let space1 = "&nbsp&nbsp";
+
+  while (x < (height - 1)) {
+    space1 = space1 + "&nbsp&nbsp";
+    x = x + 1;
+  }
+
+  let hashtag = "##";
+  marioHardResult.innerHTML = space1 + hashtag + "&nbsp&nbsp" + hashtag + "<br/>";
+
+  let y = 1;
+  let z = 1;
+  let zSub = 1;
+  let space = "&nbsp&nbsp";
+
+  while (y < height) {
+    hashtag = hashtag + "#";
+    while (z < (height - 2)) {
+      space = space + "&nbsp&nbsp";
+      z = z + 1;
+    }
+    marioHardResult.innerHTML += space + hashtag + "&nbsp&nbsp" + hashtag + "<br/>";
+    space = "";
+    z = zSub + 1;
+    zSub = zSub + 1
+    y = y + 1;
+  }
 
   //////////////////////////////// DO NOT MODIFY
   check('mario-again', height); // DO NOT MODIFY
@@ -114,7 +183,57 @@ function credit() {
   let card; // DO NOT MODIFY
   //////////// DO NOT MODIFY
 
-  // WRITE YOUR EXERCISE 3 CODE HERE
+  function credit() {
+
+    //////////// DO NOT MODIFY
+    let card; // DO NOT MODIFY
+    //////////// DO NOT MODIFY
+    let op = document.getElementById("credit-output");
+
+    do {
+      card = prompt("What card number would you like to check?");
+    }
+    while (card.length < 13 || card.length > 16);
+    let cardInt = parseInt(card, 10);
+
+    let luhnTotal=0;
+    let digit=0;
+    let even=false;
+
+    for (let i = cardInt.length - 1; i>=0; i--){
+      let digitRetrieve = cardInt.charAt(i);
+      digit = parseInt(cDigit, 10);
+
+      if (even) {
+        digit = digit*2;
+      }
+      luhnTotal= luhnTotal+digit;
+      even = !even;
+    }
+  luhnTotal = luhnTotal++;
+    if ((luhnTotal%10)!=0){
+        op.innerHTML="<img src=images/invalid.png width=100% />";
+    } else if (card.length == 15 && card.charAt(0)==3){
+        if (card.charAt(1)==4 || card.charAt(1)==7){
+          op.innerHTML="<img src=images/amex.png width=100% />";
+        } else {
+          op.innerHTML="<img src=images/invalid.png width=100% />";
+        }
+    } else if (card.length == 16 && card.charAt(0)==5){
+        if (card.charAt(1)==1 || cardInt.charAt(1)==2 || cardInt.charAt(1)==3 || cardInt.charAt(2)==4){
+          op.innerHTML="<img src=images/mastercard.png width=100% />";
+        } else {
+          op.innerHTML="<img src=images/invalid.png width=100% />";
+        }
+    } else if (card.length == 13 || card.length == 16){
+        if (card.charAt(0)==4){
+          op.innerHTML="<img src=images/visa.png width=100% />";
+        } else {
+          op.innerHTML="<img src=images/invalid.png width=100% />";
+        }
+    } else {
+        op.innerHTML="<img src=images/invalid.png width=100% />";
+    }
 
   /*
    * NOTE: After reading in the card number and storing it in the 'card'
